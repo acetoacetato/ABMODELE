@@ -1,2 +1,2 @@
 # ABMODELE
-Equipo Buena Maravilla Onda Dinamita Escuadron Lobo Elfo
+Equipo Alpha Buena Maravilla Onda Dinamita Escuadron Lobo Elfo
