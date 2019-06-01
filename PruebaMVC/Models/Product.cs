@@ -31,5 +31,12 @@ namespace PruebaMVC.Models
             set;
         }
 
+        public bool ConJuna { get; set; }
+
+        //tiempo en minutos
+        public int TiempoPreparacion {get; set;}
+
+        public virtual ICollection <Ingrediente> Ingredientes { get; set; }
+
     }
 }

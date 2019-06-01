@@ -51,9 +51,9 @@ namespace PruebaMVC.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Contact(int id)
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Your contact page." + id;
 
             return View();
         }
