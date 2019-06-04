@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ABMODELE.Models.OrdenModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaOrden)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaEntrega)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Monto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pagado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MetodoPago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ListoEntrega)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Entregado)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaOrden)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaEntrega)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Monto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pagado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MetodoPago)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ListoEntrega)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Entregado)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.NumOrden }) |
+            @Html.ActionLink("Details", "Details", new { id=item.NumOrden }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.NumOrden })
+        </td>
+    </tr>
+}
+
+</table>

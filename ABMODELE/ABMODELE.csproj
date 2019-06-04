@@ -126,10 +126,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ConSinIngredientesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IngredienteModelsController.cs" />
+    <Compile Include="Controllers\OrdenModelsController.cs" />
     <Compile Include="Controllers\ProductoModelsController.cs" />
+    <Compile Include="Controllers\ProductoPersonalizadoesController.cs" />
     <Compile Include="Controllers\ProductoToIngredientesController.cs" />
+    <Compile Include="Controllers\UsuarioModelsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -199,6 +203,26 @@
     <Content Include="Views\ProductoToIngredientes\Details.cshtml" />
     <Content Include="Views\ProductoToIngredientes\Edit.cshtml" />
     <Content Include="Views\ProductoToIngredientes\Index.cshtml" />
+    <Content Include="Views\UsuarioModels\Create.cshtml" />
+    <Content Include="Views\UsuarioModels\Delete.cshtml" />
+    <Content Include="Views\UsuarioModels\Details.cshtml" />
+    <Content Include="Views\UsuarioModels\Edit.cshtml" />
+    <Content Include="Views\UsuarioModels\Index.cshtml" />
+    <Content Include="Views\OrdenModels\Create.cshtml" />
+    <Content Include="Views\OrdenModels\Delete.cshtml" />
+    <Content Include="Views\OrdenModels\Details.cshtml" />
+    <Content Include="Views\OrdenModels\Edit.cshtml" />
+    <Content Include="Views\OrdenModels\Index.cshtml" />
+    <Content Include="Views\ProductoPersonalizadoes\Create.cshtml" />
+    <Content Include="Views\ProductoPersonalizadoes\Delete.cshtml" />
+    <Content Include="Views\ProductoPersonalizadoes\Details.cshtml" />
+    <Content Include="Views\ProductoPersonalizadoes\Edit.cshtml" />
+    <Content Include="Views\ProductoPersonalizadoes\Index.cshtml" />
+    <Content Include="Views\ConSinIngredientes\Create.cshtml" />
+    <Content Include="Views\ConSinIngredientes\Delete.cshtml" />
+    <Content Include="Views\ConSinIngredientes\Details.cshtml" />
+    <Content Include="Views\ConSinIngredientes\Edit.cshtml" />
+    <Content Include="Views\ConSinIngredientes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
