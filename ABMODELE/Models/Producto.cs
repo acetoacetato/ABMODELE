@@ -13,7 +13,6 @@ namespace ABMODELE.Models
         public string Nombre { get; set; }
         public int Precio { get; set; }
         public bool ConJuna { get; set; }
-        public DateTime FechaPreparacion { get; set; }
 
         public virtual ICollection<ProductoToIngrediente> ProductoToIngredientes { get; set; }
         public virtual ICollection<ProductoPersonalizado> ProductoPersonalizados { get; set; }

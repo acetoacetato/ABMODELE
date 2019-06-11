@@ -52,7 +52,7 @@ namespace ABMODELE.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrador")]
-        public ActionResult Create([Bind(Include = "ProductoId,Nombre,Precio,ConJuna,FechaPreparacion")] Producto producto)
+        public ActionResult Create([Bind(Include = "ProductoId,Nombre,Precio,ConJuna")] Producto producto)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace ABMODELE.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrador")]
-        public ActionResult Edit([Bind(Include = "ProductoId,Nombre,Precio,ConJuna,FechaPreparacion")] Producto producto)
+        public ActionResult Edit([Bind(Include = "ProductoId,Nombre,Precio,ConJuna")] Producto producto)
         {
             if (ModelState.IsValid)
             {

@@ -171,6 +171,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IngredientesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrdensController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -194,6 +195,10 @@
     <Compile Include="Migrations\201906102018204_DbConLogin.cs" />
     <Compile Include="Migrations\201906102018204_DbConLogin.Designer.cs">
       <DependentUpon>201906102018204_DbConLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906102131114_QuitaFechaEnProducto.cs" />
+    <Compile Include="Migrations\201906102131114_QuitaFechaEnProducto.Designer.cs">
+      <DependentUpon>201906102131114_QuitaFechaEnProducto.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -277,6 +282,11 @@
     <Content Include="Views\Productos\Details.cshtml" />
     <Content Include="Views\Productos\Edit.cshtml" />
     <Content Include="Views\Productos\Index.cshtml" />
+    <Content Include="Views\Ordens\Create.cshtml" />
+    <Content Include="Views\Ordens\Delete.cshtml" />
+    <Content Include="Views\Ordens\Details.cshtml" />
+    <Content Include="Views\Ordens\Edit.cshtml" />
+    <Content Include="Views\Ordens\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -309,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906102018204_DbConLogin.resx">
       <DependentUpon>201906102018204_DbConLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906102131114_QuitaFechaEnProducto.resx">
+      <DependentUpon>201906102131114_QuitaFechaEnProducto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -121,3 +121,4 @@ C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.test
 C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.migracion1.resources
 C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.migracion2.resources
 C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.DbConLogin.resources
+C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.QuitaFechaEnProducto.resources
