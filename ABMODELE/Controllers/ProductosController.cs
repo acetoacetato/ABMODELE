@@ -80,6 +80,41 @@ namespace ABMODELE.Controllers
             return View(producto);
         }
 
+        /// <summary>
+        ///  Calcula la cantidad de un producto que se pueden hacer.
+        /// </summary>
+        /// <param name="idProducto"> Id del producto a calcular</param>
+        /// <returns> La cantidad de productos que se pueden fabricar con el inventario actual</returns>
+        private int CantidadExistencias(int idProducto)
+        {
+            Producto producto = db.Producto.Find(idProducto);
+
+            //Se obtiene la dupla de {Ingrediente.Disponibilidad, ProductoToIngrediente.CantidadProducto}
+            //  de cada uno de los ingredientes que tiene un producto y se retorna en una lista.
+            var  listaIngredientes = db.Ingrediente
+                                        .Join(db.ProductoToIngrediente,     // La tabla con la que se va a unir
+                                            ingrediente => ingrediente.IngredienteId,       // La primary key de la primera tabla
+                                            productoToIngrediente => productoToIngrediente.IngredienteId,
+                                            (ingrediente, productoToIngrediente) => 
+                                                new { Ingrediente = ingrediente,ProductoToIngrediente = productoToIngrediente })        // Como se relacionan las variables
+                                        .Where(join => join.ProductoToIngrediente.ProductoId == idProducto)     // La condicion para el select
+                                        .Select( o => new { o.Ingrediente.Disponibilidad, o.ProductoToIngrediente.CantidadProducto})        // Se seleccionan sólo Disponibilidad y cantidad de producto
+                                        .ToList();      // Se retorna una lista
+
+            // Se obtiene la menor cantidad disponible
+            var menor= listaIngredientes.First();
+            foreach (var item in listaIngredientes)
+            {
+                var usoMenor = menor.Disponibilidad / menor.CantidadProducto;
+                var usoItem = item.Disponibilidad / menor.CantidadProducto;
+                if (usoMenor > usoItem)
+                    menor = item;
+            }
+
+            // Se retorna la cantidad de productos que se podrían hacer con esos ingredientes.
+            return (int) (menor.Disponibilidad / menor.CantidadProducto);
+        }
+
         // POST: Productoes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
