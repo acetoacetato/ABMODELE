@@ -100,13 +100,12 @@ namespace ABMODELE.Controllers
                                         .Where(join => join.ProductoToIngrediente.ProductoId == idProducto)     // La condicion para el select
                                         .Select( o => new { o.Ingrediente.Disponibilidad, o.ProductoToIngrediente.CantidadProducto})        // Se seleccionan sólo Disponibilidad y cantidad de producto
                                         .ToList();      // Se retorna una lista
-
             // Se obtiene la menor cantidad disponible
             var menor= listaIngredientes.First();
             foreach (var item in listaIngredientes)
             {
                 var usoMenor = menor.Disponibilidad / menor.CantidadProducto;
-                var usoItem = item.Disponibilidad / menor.CantidadProducto;
+                var usoItem = item.Disponibilidad / item.CantidadProducto;
                 if (usoMenor > usoItem)
                     menor = item;
             }
