@@ -9,16 +9,18 @@ using System.Web;
 using System.Web.Mvc;
 using ABMODELE.Models;
 using System.Data.Entity.Core.Objects;
+using System.Web.Helpers;
 
 namespace ABMODELE.Controllers
 {
     //Sólo los roles de administrador y cocineros pueden entrar a estas vistas
-    [Authorize(Roles = "administrador, cocinero")]
+    
     public class OrdensController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Ordens
+        [Authorize(Roles = "administrador, cocinero")]
         public async Task<ActionResult> Index(bool? todas)
         {
             List<Orden> ordenes;
@@ -42,8 +44,122 @@ namespace ABMODELE.Controllers
             return View(ordenes);
         }
 
+        //TODO: Implementar esto bien
+        public JsonResult obtenerOrden()
+        {
+            int idOrden = 1;
+            var orden = db.Orden.Find(idOrden);
+           
 
+            JsonResult json = Json(
+                                new {
+                                    NumOrden = orden.NumOrden,
+                                    FechaEntrega = orden.FechaEntrega.ToString(),
+                                    Productos = new [] {
+                                        new { // Producto 1
+                                            nombre = "game",
+                                            con = new[] {
+                                                    new { //IngredienteCon1
+                                                        nombre = "algo"
+                                                    },
+                                                    new {//IngredienteCon2
+                                                        nombre = "algo2"
+                                                    }
+                                            },
+                                            sin = new[] {
+                                                    new {//IngredienteSin1
+                                                        nombre = "algo"
+                                                    },
+                                                    new {//IngredienteSin2
+                                                        nombre = "algo2"
+                                                    }
+                                            }
+                                        },
+                                        new { // Producto 2
+                                            nombre = "game",
+                                            con = new[] {
+                                                    new {
+                                                        nombre = "algo"
+                                                    },
+                                                    new {
+                                                        nombre = "algo2"
+                                                    }
+                                            },
+                                            sin = new[] {
+                                                    new {
+                                                        nombre = "algo"
+                                                    },
+                                                    new {
+                                                        nombre = "algo2"
+                                                    }
+                                            }
+                                        },
+
+
+                                    }
+                                }, JsonRequestBehavior.AllowGet);
+                
+            return json;
+
+            /**
+             * NumeroOrden: x,
+             * FechaOrden: x,
+             * productos: {
+             *      producto: {
+             *          nombre :
+             *          con: {
+             *              x, y, z
+             *          },
+             *          sin: {
+             *              x, y, z
+             *          }
+             *      },
+             *      producto:  {
+             *          nombre :
+             *          con: {
+             *              x, y, z
+             *          },
+             *          sin: {
+             *              x, y, z
+             *          }
+             *      },
+             * }
+             */
+
+        }
+
+        /// <summary>
+        /// Genera la fecha aproximada de entrega de una orden
+        /// </summary>
+        /// <param name="idOrden">Id de la orden a generar</param>
+        /// <returns>La fecha aproximada en la que se debería hacer el retido de la orden.</returns>
+        private DateTime FechaEntrega(int idOrden)
+        {
+            var orden = db.Orden.Find(idOrden);
+            var fechaEntrega = orden.FechaOrden; // Fecha a la que quiero que salga
+            var listaProductos = orden.ProductoPersonalizado;
+            int minutos=0;
+            foreach(var item in listaProductos)
+            {
+                minutos += item.Producto.tiempoPreparacion;
+            }
+            orden.FechaEntrega = fechaEntrega.AddMinutes(minutos);
+            db.SaveChanges();
+            return orden.FechaEntrega;
+        }
+
+        public ActionResult RechazarOrden(int NumOrden)
+        {
+            var orden = db.Orden.Find(NumOrden);
+            if(orden != null)
+                db.Orden.Remove(orden);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        //TODO: Agregar el filtro para sólo mis ordenes como usuario
         // GET: Ordens/Details/5
+        [Authorize]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -59,11 +175,13 @@ namespace ABMODELE.Controllers
         }
 
         // GET: Ordens/Create
+        [Authorize(Roles = "administrador, cocinero")]
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "administrador, cocinero")]
         [HttpPost]
         public JsonResult EntregarOrden(int id)
         {
@@ -79,6 +197,7 @@ namespace ABMODELE.Controllers
         // POST: Ordens/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "NumOrden,IdUsuario,FechaOrden,FechaEntrega,Monto,Pagado,MetodoPago,Preparado,Entregado")] Orden orden)
@@ -94,6 +213,7 @@ namespace ABMODELE.Controllers
         }
 
         // GET: Ordens/Edit/5
+        [Authorize(Roles = "administrador")]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -111,6 +231,7 @@ namespace ABMODELE.Controllers
         // POST: Ordens/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "administrador, cocinero")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "NumOrden,IdUsuario,FechaOrden,FechaEntrega,Monto,Pagado,MetodoPago,Preparado,Entregado")] Orden orden)
@@ -125,6 +246,7 @@ namespace ABMODELE.Controllers
         }
 
         // GET: Ordens/Delete/5
+        [Authorize(Roles = "administrador, cocinero")]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -141,6 +263,7 @@ namespace ABMODELE.Controllers
 
         // POST: Ordens/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "administrador, cocinero")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {

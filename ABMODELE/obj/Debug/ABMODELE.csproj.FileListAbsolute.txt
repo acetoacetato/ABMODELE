@@ -122,3 +122,5 @@ C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.migr
 C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.migracion2.resources
 C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.DbConLogin.resources
 C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.QuitaFechaEnProducto.resources
+C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.tiempoPrep.resources
+C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.agregarBool.resources

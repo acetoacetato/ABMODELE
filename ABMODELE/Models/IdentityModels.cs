@@ -32,6 +32,7 @@ namespace ABMODELE.Models
         public DbSet<ProductoToIngrediente> ProductoToIngrediente { get; set; }
         public DbSet<SinIngrediente> SinIngrediente { get; set; }
 
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

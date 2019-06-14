@@ -23,6 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.ConJuna)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tiempoPreparacion)
+        </th>
         <th></th>
     </tr>
 
@@ -38,10 +41,13 @@
             @Html.DisplayFor(modelItem => item.ConJuna)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.tiempoPreparacion)
+        </td>
+        <td>
             @if (User.IsInRole("administrador"))
             {
-                @Html.ActionLink("Edit", "Edit", new { id = item.ProductoId }) 
-                @Html.ActionLink("Delete", "Delete", new { id = item.ProductoId }) 
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductoId })
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductoId })
             }
 
             @Html.ActionLink("Details", "Details", new { id = item.ProductoId }) |

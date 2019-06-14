@@ -17,6 +17,9 @@ namespace ABMODELE.Models
         [Column(Order = 2)]
         public int IdIngrediente { get; set; }
 
+
+        public bool Sin { get; set; }
+
         public virtual ProductoPersonalizado ProductoPersonalizado { get; set; }
         public virtual Ingrediente Ingrediente { get; set; }
     }

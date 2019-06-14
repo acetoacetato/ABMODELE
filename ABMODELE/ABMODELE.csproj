@@ -200,6 +200,14 @@
     <Compile Include="Migrations\201906102131114_QuitaFechaEnProducto.Designer.cs">
       <DependentUpon>201906102131114_QuitaFechaEnProducto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906132109323_tiempoPrep.cs" />
+    <Compile Include="Migrations\201906132109323_tiempoPrep.Designer.cs">
+      <DependentUpon>201906132109323_tiempoPrep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906132355460_agregarBool.cs" />
+    <Compile Include="Migrations\201906132355460_agregarBool.Designer.cs">
+      <DependentUpon>201906132355460_agregarBool.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -322,6 +330,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906102131114_QuitaFechaEnProducto.resx">
       <DependentUpon>201906102131114_QuitaFechaEnProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906132109323_tiempoPrep.resx">
+      <DependentUpon>201906132109323_tiempoPrep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906132355460_agregarBool.resx">
+      <DependentUpon>201906132355460_agregarBool.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
