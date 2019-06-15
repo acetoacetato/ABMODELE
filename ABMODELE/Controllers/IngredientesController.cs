@@ -18,7 +18,17 @@ namespace ABMODELE.Controllers
         // GET: Ingredientes
         public ActionResult Index()
         {
-            return View(db.Ingrediente.ToList());
+            return View(db.Ingrediente.Where(i => i.EsAuxiliar == false).ToList());
+        }
+
+        public JsonResult ingredientesDisponibles()
+        {
+            var listaIngredientes = db.Ingrediente
+                                        .Where(i => i.EsAuxiliar == false)
+                                        .Select(i => new { i.IngredienteId, i.Nombre })
+                                        .ToList();
+            JsonResult json = Json(listaIngredientes, JsonRequestBehavior.AllowGet);
+            return json;
         }
 
         // GET: Ingredientes/Details/5
@@ -29,7 +39,7 @@ namespace ABMODELE.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Ingrediente ingrediente = db.Ingrediente.Find(id);
-            if (ingrediente == null)
+            if (ingrediente == null || ingrediente.EsAuxiliar)
             {
                 return HttpNotFound();
             }
@@ -51,6 +61,7 @@ namespace ABMODELE.Controllers
         {
             if (ModelState.IsValid)
             {
+                ingrediente.EsAuxiliar = false;
                 db.Ingrediente.Add(ingrediente);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -67,7 +78,7 @@ namespace ABMODELE.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Ingrediente ingrediente = db.Ingrediente.Find(id);
-            if (ingrediente == null)
+            if (ingrediente == null || ingrediente.EsAuxiliar)
             {
                 return HttpNotFound();
             }
@@ -98,7 +109,7 @@ namespace ABMODELE.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Ingrediente ingrediente = db.Ingrediente.Find(id);
-            if (ingrediente == null)
+            if (ingrediente == null || ingrediente.EsAuxiliar)
             {
                 return HttpNotFound();
             }

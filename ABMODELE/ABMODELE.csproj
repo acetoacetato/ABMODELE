@@ -208,8 +208,16 @@
     <Compile Include="Migrations\201906132355460_agregarBool.Designer.cs">
       <DependentUpon>201906132355460_agregarBool.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906150138234_ProdPerYOrden.cs" />
+    <Compile Include="Migrations\201906150138234_ProdPerYOrden.Designer.cs">
+      <DependentUpon>201906150138234_ProdPerYOrden.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906152039504_15062019.cs" />
+    <Compile Include="Migrations\201906152039504_15062019.Designer.cs">
+      <DependentUpon>201906152039504_15062019.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Ingrediente.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -218,6 +226,7 @@
     <Compile Include="Models\ProductoPersonalizado.cs" />
     <Compile Include="Models\ProductoToIngrediente.cs" />
     <Compile Include="Models\SinIngrediente.cs" />
+    <Compile Include="Models\TipoProducto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -336,6 +345,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906132355460_agregarBool.resx">
       <DependentUpon>201906132355460_agregarBool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906150138234_ProdPerYOrden.resx">
+      <DependentUpon>201906150138234_ProdPerYOrden.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906152039504_15062019.resx">
+      <DependentUpon>201906152039504_15062019.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

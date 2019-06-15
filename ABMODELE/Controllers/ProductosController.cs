@@ -52,7 +52,7 @@ namespace ABMODELE.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrador")]
-        public ActionResult Create([Bind(Include = "ProductoId,Nombre,Precio,ConJuna,tiempoPreparacion")] Producto producto)
+        public ActionResult Create([Bind(Include = "ProductoId,Nombre,Precio,ConJuna,tiempoPreparacion,Tipo")] Producto producto)
         {
             if (ModelState.IsValid)
             {
@@ -120,7 +120,7 @@ namespace ABMODELE.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrador")]
-        public ActionResult Edit([Bind(Include = "ProductoId,Nombre,Precio,ConJuna,tiempoPreparacion")] Producto producto)
+        public ActionResult Edit([Bind(Include = "ProductoId,Nombre,Precio,ConJuna,tiempoPreparacion,Tipo")] Producto producto)
         {
             if (ModelState.IsValid)
             {
@@ -154,7 +154,12 @@ namespace ABMODELE.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Producto producto = db.Producto.Find(id);
+            Ingrediente ingrediente = producto.ProductoToIngredientes
+                                                .First()
+                                                .Ingrediente;
             db.Producto.Remove(producto);
+            if (producto.TipoProducto.Nombre != "Preparable" )
+                db.Ingrediente.Remove(ingrediente);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

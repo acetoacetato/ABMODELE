@@ -28,6 +28,7 @@ namespace ABMODELE.Models
         public DbSet<Producto> Producto { get; set; }
         public DbSet<Orden> Orden { get; set; }
         public DbSet<ProductoPersonalizado> ProductoPersonalizado { get; set; }
+        public DbSet<TipoProducto> TipoProducto { get; set; }
 
         public DbSet<ProductoToIngrediente> ProductoToIngrediente { get; set; }
         public DbSet<SinIngrediente> SinIngrediente { get; set; }

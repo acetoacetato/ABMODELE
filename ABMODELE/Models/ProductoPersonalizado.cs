@@ -10,10 +10,11 @@ namespace ABMODELE.Models
     public class ProductoPersonalizado
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         [Column(Order = 1)]
         public int IdOrden { get; set; }
 
-        [Key]
         [Column(Order = 2)]
         public int IdProducto { get; set; }
 

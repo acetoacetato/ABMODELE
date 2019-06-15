@@ -44,89 +44,17 @@ namespace ABMODELE.Controllers
             return View(ordenes);
         }
 
-        //TODO: Implementar esto bien
-        public JsonResult obtenerOrden()
+
+        public JsonResult obtenerOrden(int idOrden)
         {
-            int idOrden = 1;
             var orden = db.Orden.Find(idOrden);
-           
-
-            JsonResult json = Json(
-                                new {
-                                    NumOrden = orden.NumOrden,
-                                    FechaEntrega = orden.FechaEntrega.ToString(),
-                                    Productos = new [] {
-                                        new { // Producto 1
-                                            nombre = "game",
-                                            con = new[] {
-                                                    new { //IngredienteCon1
-                                                        nombre = "algo"
-                                                    },
-                                                    new {//IngredienteCon2
-                                                        nombre = "algo2"
-                                                    }
-                                            },
-                                            sin = new[] {
-                                                    new {//IngredienteSin1
-                                                        nombre = "algo"
-                                                    },
-                                                    new {//IngredienteSin2
-                                                        nombre = "algo2"
-                                                    }
-                                            }
-                                        },
-                                        new { // Producto 2
-                                            nombre = "game",
-                                            con = new[] {
-                                                    new {
-                                                        nombre = "algo"
-                                                    },
-                                                    new {
-                                                        nombre = "algo2"
-                                                    }
-                                            },
-                                            sin = new[] {
-                                                    new {
-                                                        nombre = "algo"
-                                                    },
-                                                    new {
-                                                        nombre = "algo2"
-                                                    }
-                                            }
-                                        },
-
-
-                                    }
-                                }, JsonRequestBehavior.AllowGet);
+            JsonResult json = Json(new OrdenJson(orden), JsonRequestBehavior.AllowGet);
                 
             return json;
 
-            /**
-             * NumeroOrden: x,
-             * FechaOrden: x,
-             * productos: {
-             *      producto: {
-             *          nombre :
-             *          con: {
-             *              x, y, z
-             *          },
-             *          sin: {
-             *              x, y, z
-             *          }
-             *      },
-             *      producto:  {
-             *          nombre :
-             *          con: {
-             *              x, y, z
-             *          },
-             *          sin: {
-             *              x, y, z
-             *          }
-             *      },
-             * }
-             */
-
         }
+
+   
 
         /// <summary>
         /// Genera la fecha aproximada de entrega de una orden
@@ -141,7 +69,7 @@ namespace ABMODELE.Controllers
             int minutos=0;
             foreach(var item in listaProductos)
             {
-                minutos += item.Producto.tiempoPreparacion;
+                minutos += item.Producto.TiempoPreparacion;
             }
             orden.FechaEntrega = fechaEntrega.AddMinutes(minutos);
             db.SaveChanges();

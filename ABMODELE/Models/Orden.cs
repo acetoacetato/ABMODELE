@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -9,6 +10,7 @@ namespace ABMODELE.Models
     public class Orden
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int NumOrden { get; set; }
         public int IdUsuario { get; set; }
         public DateTime FechaOrden { get; set; }
@@ -21,5 +23,18 @@ namespace ABMODELE.Models
 
 
         public virtual ICollection<ProductoPersonalizado> ProductoPersonalizado { get; set; }
+    }
+
+   public class OrdenJson
+    {
+        public int NumOrden { get; set; }
+        public string FechaEntrega { get; set; }
+        public ICollection<ProductoPersonalizado> ProductoPersonalizado { get; set; }
+        public OrdenJson (Orden o)
+        {
+            NumOrden = o.NumOrden;
+            FechaEntrega = o.FechaEntrega.ToString();
+            ProductoPersonalizado = o.ProductoPersonalizado;
+        }
     }
 }
