@@ -227,6 +227,7 @@
     <Compile Include="Models\ProductoToIngrediente.cs" />
     <Compile Include="Models\SinIngrediente.cs" />
     <Compile Include="Models\TipoProducto.cs" />
+    <Compile Include="Models\ViewModel\ProductoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -304,6 +305,7 @@
     <Content Include="Views\Ordens\Details.cshtml" />
     <Content Include="Views\Ordens\Edit.cshtml" />
     <Content Include="Views\Ordens\Index.cshtml" />
+    <Content Include="Views\Productos\Numerito.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

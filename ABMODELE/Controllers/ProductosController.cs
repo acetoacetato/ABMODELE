@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ABMODELE.Models;
+using ABMODELE.Models.ViewModel;
 
 namespace ABMODELE.Controllers
 {
@@ -43,7 +44,11 @@ namespace ABMODELE.Controllers
         [Authorize(Roles = "administrador")]
         public ActionResult Create()
         {
-            return View();
+            CreateProductoViewModel modelo = new CreateProductoViewModel();
+
+            modelo.TipoProducto = db.TipoProducto.ToList();
+
+            return View(modelo);
         }
 
         // POST: Productoes/Create
@@ -57,11 +62,48 @@ namespace ABMODELE.Controllers
             if (ModelState.IsValid)
             {
                 db.Producto.Add(producto);
+                if (producto.Tipo != 1) //Si no es preparable
+                    ProductoSingular(producto);
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             return View(producto);
+        }
+
+        /// <summary>
+        /// Agrega un ingrediente auxiliar y lo enlaza a un producto que no se prepara
+        /// </summary>
+        /// <param name="producto">El producto No Preparable a asignar</param>
+        private void ProductoSingular(Producto producto)
+        {
+            Ingrediente Ingrediente = new Ingrediente
+            {
+                Nombre = producto.Nombre,
+                Disponibilidad = 0,
+                PrecioSingular = producto.Precio,
+                EsAuxiliar = true
+            };
+
+            db.Ingrediente.Add(Ingrediente);
+            db.SaveChanges();
+
+            ProductoToIngrediente prodToIng = new ProductoToIngrediente
+            {
+                ProductoId = producto.ProductoId,
+                IngredienteId = Ingrediente.IngredienteId,
+                CantidadProducto = 1
+            };
+
+            db.ProductoToIngrediente.Add(prodToIng);
+            db.SaveChanges();
+        }
+
+        public ActionResult Numerito (int i)
+        {
+            ViewBag.numero = i;
+            return View();
         }
 
         // GET: Productoes/Edit/5
