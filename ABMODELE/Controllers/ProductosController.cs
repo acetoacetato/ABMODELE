@@ -63,7 +63,10 @@ namespace ABMODELE.Controllers
             {
                 db.Producto.Add(producto);
                 if (producto.Tipo != 1) //Si no es preparable
+                {
+                    producto.TiempoPreparacion = 0;
                     ProductoSingular(producto);
+                }
 
                 db.SaveChanges();
                 return RedirectToAction("Index");

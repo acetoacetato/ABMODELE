@@ -12,12 +12,14 @@ namespace ABMODELE.Models
         [Key]
         public int ProductoId { get; set; }
         public string Nombre { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "Debe ser un precio mayor o igual a 0")]
         public int Precio { get; set; }
         [Display(Name = "¿Comprable Con junaeb?")]
         public bool ConJuna { get; set; }
         [ForeignKey("TipoProducto")]
         [Display(Name = "Tipo de Producto")]
         public int Tipo { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "Debe ser un tiempo mayor o igual a 0")]
         [Display(Name ="Tiempo de preparacion (En minutos)")]
         public int TiempoPreparacion { get; set; }
         public virtual ICollection<ProductoToIngrediente> ProductoToIngredientes { get; set; }

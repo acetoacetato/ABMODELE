@@ -17,6 +17,7 @@ namespace ABMODELE.Models
         [Column(Order = 2)]
         public int IngredienteId { get; set; }
 
+        [Range(0, int.MaxValue, ErrorMessage = "No puede ser un valor menor a 0")]
         public float CantidadProducto { get; set; }
 
         public virtual Producto Producto { get; set; }

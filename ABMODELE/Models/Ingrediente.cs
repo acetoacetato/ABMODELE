@@ -12,7 +12,9 @@ namespace ABMODELE.Models
         [Key]
         public int IngredienteId { get; set; }
         public string Nombre { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "No puede ser menor a 0")]
         public float Disponibilidad { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "El precio no debe ser menor a 0")]
         public int PrecioSingular { get; set; }
         public Boolean EsAuxiliar { get; set; }
 
