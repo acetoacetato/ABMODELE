@@ -126,3 +126,4 @@ C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.tiem
 C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.agregarBool.resources
 C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.ProdPerYOrden.resources
 C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations._15062019.resources
+C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.idUsuario.resources

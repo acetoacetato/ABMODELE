@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IngredientesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -216,8 +217,13 @@
     <Compile Include="Migrations\201906152039504_15062019.Designer.cs">
       <DependentUpon>201906152039504_15062019.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906182010436_idUsuario.cs" />
+    <Compile Include="Migrations\201906182010436_idUsuario.Designer.cs">
+      <DependentUpon>201906182010436_idUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
+    <Compile Include="Models\CarroDeCompra.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Ingrediente.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -309,6 +315,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Carrito\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -353,6 +360,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906152039504_15062019.resx">
       <DependentUpon>201906152039504_15062019.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906182010436_idUsuario.resx">
+      <DependentUpon>201906182010436_idUsuario.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

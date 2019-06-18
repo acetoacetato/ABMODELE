@@ -12,7 +12,7 @@ namespace ABMODELE.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int NumOrden { get; set; }
-        public int IdUsuario { get; set; }
+        public string IdUsuario { get; set; }
         public DateTime FechaOrden { get; set; }
         public DateTime FechaEntrega { get; set; }
         public int Monto { get; set; }
@@ -23,6 +23,11 @@ namespace ABMODELE.Models
 
 
         public virtual ICollection<ProductoPersonalizado> ProductoPersonalizado { get; set; }
+
+
+
+
+
     }
 
    public class OrdenJson
@@ -37,4 +42,6 @@ namespace ABMODELE.Models
             ProductoPersonalizado = o.ProductoPersonalizado;
         }
     }
+
+
 }

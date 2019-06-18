@@ -22,5 +22,19 @@ namespace ABMODELE.Models
         public virtual Orden Orden { get; set; }
         public virtual ICollection<SinIngrediente> SinIngrediente { get; set; }
 
+
+        public int calcularCoste()
+        {
+            int total = Producto.Precio;
+            var IngExtra = SinIngrediente
+                            .Where(s => s.Sin == false)
+                            .Select(s => s.Ingrediente)
+                            .ToList();
+            foreach(var item in IngExtra)
+            {
+                total += item.PrecioSingular;
+            }
+            return total;
+        }
     }
 }

@@ -36,6 +36,7 @@ namespace ABMODELE.Controllers
                 ordenes = await db.Orden
                                     .Where(o => o.Entregado == false)
                                     .Where(o => DbFunctions.DiffDays(o.FechaEntrega, hoy) == 0)
+                                    .Where(o => o.Pagado == true)
                                     .OrderBy(o => o.FechaEntrega)
                                     .ToListAsync();
 
@@ -102,11 +103,28 @@ namespace ABMODELE.Controllers
             return View(orden);
         }
 
-        // GET: Ordens/Create
-        [Authorize(Roles = "administrador, cocinero")]
+        // GET: Ordens/PagarCarro
+        [Authorize]
+        [ActionName("PagarCarro")]
         public ActionResult Create()
         {
-            return View();
+            if (User.IsInRole("usuario") || User.IsInRole("administrador"))
+            {
+                CarroDeCompra _carro = (CarroDeCompra)HttpContext.Session["Carrito"];
+                string nombreUsr = User.Identity.Name;
+                Orden orden = new Orden()
+                {
+                    IdUsuario = nombreUsr,
+                    Monto = _carro.CalcularCoste(),
+                    ProductoPersonalizado = _carro.ProductoPersonalizado
+                };
+                return View(orden);
+
+
+            }
+            
+            return RedirectToAction("Index");
+
         }
 
         [Authorize(Roles = "administrador, cocinero")]
