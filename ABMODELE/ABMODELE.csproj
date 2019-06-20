@@ -221,18 +221,24 @@
     <Compile Include="Migrations\201906182010436_idUsuario.Designer.cs">
       <DependentUpon>201906182010436_idUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906200024034_TipoDePago.cs" />
+    <Compile Include="Migrations\201906200024034_TipoDePago.Designer.cs">
+      <DependentUpon>201906200024034_TipoDePago.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\CarroDeCompra.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Ingrediente.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MetodoDePago.cs" />
     <Compile Include="Models\Orden.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\ProductoPersonalizado.cs" />
     <Compile Include="Models\ProductoToIngrediente.cs" />
     <Compile Include="Models\SinIngrediente.cs" />
     <Compile Include="Models\TipoProducto.cs" />
+    <Compile Include="Models\ViewModel\CarroViewModel.cs" />
     <Compile Include="Models\ViewModel\ProductoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -306,7 +312,7 @@
     <Content Include="Views\Productos\Details.cshtml" />
     <Content Include="Views\Productos\Edit.cshtml" />
     <Content Include="Views\Productos\Index.cshtml" />
-    <Content Include="Views\Ordens\Create.cshtml" />
+    <Content Include="Views\Ordens\PagarCarro.cshtml" />
     <Content Include="Views\Ordens\Delete.cshtml" />
     <Content Include="Views\Ordens\Details.cshtml" />
     <Content Include="Views\Ordens\Edit.cshtml" />
@@ -363,6 +369,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906182010436_idUsuario.resx">
       <DependentUpon>201906182010436_idUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906200024034_TipoDePago.resx">
+      <DependentUpon>201906200024034_TipoDePago.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

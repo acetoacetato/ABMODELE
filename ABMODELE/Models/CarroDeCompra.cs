@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ABMODELE.Models
 {
@@ -9,19 +10,30 @@ namespace ABMODELE.Models
     {
         public List<ProductoPersonalizado> ProductoPersonalizado { get; set; }
 
+        public CarroDeCompra()
+        {
+            ProductoPersonalizado = new List<ProductoPersonalizado>();
+        }
+
         internal void AgregarProducto(ProductoPersonalizado productoPersonalizado)
         {
+            if (ProductoPersonalizado == null)
+                return;
             ProductoPersonalizado.Add(productoPersonalizado);
         }
 
         internal void EliminarProducto(ProductoPersonalizado productoPersonalizado)
         {
+            if (ProductoPersonalizado == null)
+                return;
             ProductoPersonalizado.Remove(productoPersonalizado);
         }
 
         internal void VaciarCarro()
         {
-            foreach(var item in ProductoPersonalizado)
+            if (ProductoPersonalizado == null)
+                return;
+            foreach (var item in ProductoPersonalizado)
             {
                 ProductoPersonalizado.Remove(item);
             }
@@ -29,6 +41,8 @@ namespace ABMODELE.Models
 
         public int CalcularCoste()
         {
+            if (ProductoPersonalizado == null)
+                return 0;
             int total = 0;
             foreach(var item in ProductoPersonalizado)
             {

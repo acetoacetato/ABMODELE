@@ -25,6 +25,10 @@ namespace ABMODELE.Models
 
         public int calcularCoste()
         {
+            if(SinIngrediente == null)
+            {
+                return 0;
+            }
             int total = Producto.Precio;
             var IngExtra = SinIngrediente
                             .Where(s => s.Sin == false)

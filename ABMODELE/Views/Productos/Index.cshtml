@@ -51,9 +51,22 @@
             }
 
             @Html.ActionLink("Details", "Details", new { id = item.ProductoId }) |
-
+            <a href="#" onclick="agregarAlCarrito(@item.ProductoId)">agregar</a>
         </td>
     </tr>
 }
 
 </table>
+
+<script>
+    function agregarAlCarrito(idProducto)
+    {
+        $.ajax({
+            type: "POST",
+            url: "/Carrito/AgregarProducto",
+            content: "application/json; charset=utf-8",
+            dataType: "json"//,
+            
+        });
+    }
+</script>

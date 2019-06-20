@@ -17,13 +17,14 @@ namespace ABMODELE.Models
         public DateTime FechaEntrega { get; set; }
         public int Monto { get; set; }
         public bool Pagado { get; set; }
+        [ForeignKey("MetodoDePago")]
         public int MetodoPago { get; set; }
         public bool Preparado { get; set; }
         public bool Entregado { get; set; }
 
 
         public virtual ICollection<ProductoPersonalizado> ProductoPersonalizado { get; set; }
-
+        public virtual MetodoDePago MetodoDePago { get; set; }
 
 
 
