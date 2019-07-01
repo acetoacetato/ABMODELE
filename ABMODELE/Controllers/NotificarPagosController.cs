@@ -13,7 +13,7 @@ namespace ABMODELE.Controllers
     public class NotificarPagosController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        public ActionResult Index(String api_version, string notification_token)
+        public void Index(String api_version, string notification_token)
         {
             Configuration.ReceiverId = 246710;
             Configuration.Secret = "7cb89cb138e927b3defdd3fbdf84c6c0ffd9ffc0";

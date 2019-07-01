@@ -10,13 +10,16 @@ using System.Web.Mvc;
 
 namespace ABMODELE.Controllers
 {
+    //REDIRECCIONAR EL PAGO A LA URL INTERNA DEL PROYECTO.
     public class CrearPagoController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        public ActionResult Index(CarroDeCompra carro)
+        public void Index(Orden orden)
         {
             Configuration.ReceiverId = 246710;
             Configuration.Secret = "7cb89cb138e927b3defdd3fbdf84c6c0ffd9ffc0";
+
+            
             PaymentsApi a = new PaymentsApi();
 
             try
@@ -27,16 +30,16 @@ namespace ABMODELE.Controllers
                     "Compra de prueba de la API",
                     "CLP",
                     //creo que acá tengo que buscar una forma de conseguir el valor total del carrito???
-                    carro.CalcularCoste(),
-                    //transactionId creo que es el numero de Orden?? de ser así, debere tambien pasar la orden completa??
-                    transactionId: "FACT2001",
+                    orden.Monto,
+                                   
+                    transactionId: Convert.ToString(orden.NumOrden),
                     expiresDate: dt,
                     //Ni idea como conseguir esto
                     body: "Descripción de la compra",
                     //la foto que se ingresara, será del producto, sera una imagen para todo??, por ahora dejare la del
                     //pug que es bonita
                     pictureUrl: "https://img.clasf.co/2017/08/22/Perritos-Pug-Arena-Cachorros-Disponibles-20170822141319.jpg",
-                    returnUrl: "localhost:54385",
+                    returnUrl: "localhost:57488",
                     cancelUrl: "localhost",
                     notifyUrl: "localhost",
                     notifyApiVersion: "1.3"
