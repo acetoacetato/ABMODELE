@@ -31,6 +31,8 @@ namespace ABMODELE.Controllers
             return json;
         }
 
+ 
+
         // GET: Ingredientes/Details/5
         public ActionResult Details(int? id)
         {

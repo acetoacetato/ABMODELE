@@ -43,7 +43,7 @@ namespace ABMODELE.Controllers
         public async Task<ActionResult> Index(bool? todas)
         {
             List<Orden> ordenes;
-            // Si se especifica el marámetro todas en true,
+            // Si se especifica el parámetro todas en true,
             //      se muestran todas las ordenes,  
             //      ordenadas por fecha de entrega.
             if(todas != null && todas == true)
@@ -151,7 +151,7 @@ namespace ABMODELE.Controllers
         public ActionResult Create()           
         {
             //Si el usuario es un usuario o un administrador
-            if (User.IsInRole("usuario") || User.IsInRole("administrador"))
+            if (User.IsInRole("cliente") || User.IsInRole("administrador"))
             {
                 //Se obtiene una instancia de carro que existe en las variables de sesion
                 CarroDeCompra _carro = obtenerCarro();
@@ -217,7 +217,7 @@ namespace ABMODELE.Controllers
 
             AgregarProductosPersonalizados(orden);
 
-
+            
 
             return View(orden);
         }

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ABMODELE.Models.Producto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @if (User.IsInRole("administrador"))
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConJuna)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TiempoPreparacion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConJuna)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TiempoPreparacion)
+        </td>
+        <td>
+            @if (User.IsInRole("administrador"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductoId })
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductoId })
+            }
+
+            @Html.ActionLink("Details", "Details", new { id = item.ProductoId }) |
+            <a href="#" onclick="agregarAlCarrito(@item.ProductoId)">agregar</a>
+        </td>
+    </tr>
+}
+
+</table>
+
+<script>
+    function agregarAlCarrito(idProducto)
+    {
+        $.ajax({
+            type: "POST",
+            url: "/Carrito/AgregarProducto",
+            content: "application/json; charset=utf-8",
+            dataType: "json"//,
+            
+        });
+    }
+</script>

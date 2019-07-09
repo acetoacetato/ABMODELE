@@ -39,9 +39,10 @@ namespace ABMODELE.Controllers
         }
 
         [HttpPost]
+        //recibir el id del producto y verificar si existe en la db
         public JsonResult AgregarProducto()
         {
-
+            
             CarroDeCompra _carro = obtenerCarro();
             if(_carro == null)
             {
