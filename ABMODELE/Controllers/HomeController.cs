@@ -15,14 +15,14 @@ namespace ABMODELE.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Estudiantes de la Pontificia Católica de Valparaiso";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Tu página de contacto.";
 
             return View();
         }

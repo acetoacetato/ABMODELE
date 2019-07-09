@@ -17,7 +17,26 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" onclick="registrarse()">Registrarse</a></li>
         <li>@Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Iniciar sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }
+
+
+<script>
+
+    function registrarse() {
+        ventana = window.open("/Account/Register");
+        var timer = setInterval(function () {
+            if (ventana.closed) {
+                clearInterval(timer);
+                //tiene que refrescar la pagina.
+                alert(1);
+                //redireccionar a una pagina en blanco para que me lo cierre, pasar el post de register a js y a ajax.
+            }
+        }, 1000);
+
+    }
+
+</script>
