@@ -162,7 +162,7 @@ namespace ABMODELE.Controllers
                 Orden orden = new Orden()
                 {
                     IdUsuario = nombreUsr,
-                    Monto = _carro.CalcularCoste()
+                    Monto = (User.IsInRole("administrador"))? 0:_carro.CalcularCoste()
                 };
                 CarroViewModel carroViewModel = new CarroViewModel()
                 {

@@ -395,3 +395,7 @@ C:\Users\Marcelo\VistaDeAra\ABMODELE\obj\Debug\ABMODELE.csproj.CopyComplete
 C:\Users\Marcelo\VistaDeAra\ABMODELE\obj\Debug\ABMODELE.dll
 C:\Users\Marcelo\VistaDeAra\ABMODELE\obj\Debug\ABMODELE.pdb
 C:\Users\Marcelo\VistaDeAra\ABMODELE\obj\Debug\ABMODELE.Migrations.ComentarioEnProducto.resources
+C:\Users\alenf\source\repos\ABMODELE\ABMODELE\bin\KhipuApiClient.dll
+C:\Users\alenf\source\repos\ABMODELE\ABMODELE\bin\RestSharp.dll
+C:\Users\alenf\source\repos\ABMODELE\ABMODELE\bin\RestSharp.xml
+C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.ComentarioEnProducto.resources

@@ -31,27 +31,32 @@ namespace ABMODELE.Controllers
             return carro;
         }
 
-        public JsonResult AgregarProducto(ProductoPersonalizado productoPersonalizado)
-        {
-            CarroDeCompra _carro = obtenerCarro();
-            _carro.AgregarProducto(productoPersonalizado);
-            return Json("'Sucess'");
-        }
-
         [HttpPost]
-        //recibir el id del producto y verificar si existe en la db
-        public JsonResult AgregarProducto()
+        public JsonResult AgregarProducto(int idProducto)
         {
-            
             CarroDeCompra _carro = obtenerCarro();
-            if(_carro == null)
+            Producto producto = db.Producto.Find(idProducto);
+            if(producto == null)
+            {
+                return Json(new { success = false, responseText = "El id del rpoducto es inválido." }, JsonRequestBehavior.AllowGet);
+            }
+            ProductoPersonalizado productoPersonalizado =
+                new ProductoPersonalizado()
+                {
+                    IdProducto = idProducto,
+                    Producto = producto,
+                };
+            if (_carro == null)
             {
                 _carro = new CarroDeCompra();
                 HttpContext.Session["Carrito"] = _carro;
             }
-            _carro.AgregarProducto(new ProductoPersonalizado() { IdProducto = 1, Producto = new Producto() });
-            return Json("'Sucess'");
+            _carro.AgregarProducto(productoPersonalizado);
+            return Json(new {success = true}, JsonRequestBehavior.AllowGet);
         }
+
+        
+        
 
         public JsonResult EliminarProducto (ProductoPersonalizado productoPersonalizado)
         {

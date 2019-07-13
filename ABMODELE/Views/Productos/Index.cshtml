@@ -65,7 +65,19 @@
             type: "POST",
             url: "/Carrito/AgregarProducto",
             content: "application/json; charset=utf-8",
-            dataType: "json"//,
+            dataType: "json",
+            data: {
+                'idProducto': idProducto
+            },
+            success: function (response) {
+                if (response.success)
+                    alert("Producto Agregado");
+                else
+                    alert("Error: " + response.responseText);
+            },
+            error: function (response) {
+                alert("Errrorrrr: " + response.responseText);
+            }
             
         });
     }
