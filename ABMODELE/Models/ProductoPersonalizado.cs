@@ -18,7 +18,6 @@ namespace ABMODELE.Models
         [Column(Order = 2)]
         public int IdProducto { get; set; }
 
-        public String Comentario { get; set; }
 
         public virtual Producto Producto { get; set; }
         public virtual Orden Orden { get; set; }

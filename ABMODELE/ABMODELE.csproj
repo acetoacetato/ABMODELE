@@ -239,6 +239,10 @@
     <Compile Include="Migrations\201907081948410_ComentarioEnProducto.Designer.cs">
       <DependentUpon>201907081948410_ComentarioEnProducto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907130204444_ComentariosOrden.cs" />
+    <Compile Include="Migrations\201907130204444_ComentariosOrden.Designer.cs">
+      <DependentUpon>201907130204444_ComentariosOrden.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\CarroDeCompra.cs" />
@@ -519,6 +523,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907081948410_ComentarioEnProducto.resx">
       <DependentUpon>201907081948410_ComentarioEnProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907130204444_ComentariosOrden.resx">
+      <DependentUpon>201907130204444_ComentariosOrden.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

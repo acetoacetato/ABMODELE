@@ -399,3 +399,4 @@ C:\Users\alenf\source\repos\ABMODELE\ABMODELE\bin\KhipuApiClient.dll
 C:\Users\alenf\source\repos\ABMODELE\ABMODELE\bin\RestSharp.dll
 C:\Users\alenf\source\repos\ABMODELE\ABMODELE\bin\RestSharp.xml
 C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.ComentarioEnProducto.resources
+C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.ComentariosOrden.resources

@@ -32,7 +32,7 @@ namespace ABMODELE.Controllers
         }
 
         [HttpPost]
-        public JsonResult AgregarProducto(int idProducto)
+        public JsonResult AgregarProducto(int idProducto, int cantidad)
         {
             CarroDeCompra _carro = obtenerCarro();
             Producto producto = db.Producto.Find(idProducto);
@@ -40,18 +40,24 @@ namespace ABMODELE.Controllers
             {
                 return Json(new { success = false, responseText = "El id del rpoducto es inválido." }, JsonRequestBehavior.AllowGet);
             }
-            ProductoPersonalizado productoPersonalizado =
-                new ProductoPersonalizado()
-                {
-                    IdProducto = idProducto,
-                    Producto = producto,
-                };
+            
             if (_carro == null)
             {
                 _carro = new CarroDeCompra();
                 HttpContext.Session["Carrito"] = _carro;
             }
-            _carro.AgregarProducto(productoPersonalizado);
+
+            for(int i=0; i< cantidad; i++)
+            {
+                ProductoPersonalizado productoPersonalizado =
+                new ProductoPersonalizado()
+                {
+                    IdProducto = idProducto,
+                    Producto = producto,
+                };
+                _carro.AgregarProducto(productoPersonalizado);
+            }
+            
             return Json(new {success = true}, JsonRequestBehavior.AllowGet);
         }
 

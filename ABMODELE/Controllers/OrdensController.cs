@@ -158,16 +158,33 @@ namespace ABMODELE.Controllers
 
                 //Se obtiene el nombre de usuario (mail)
                 string nombreUsr = User.Identity.Name;
+                int monto;
+                bool pagado;
+                if (User.IsInRole("administrador"))
+                {
+                    monto = 0;
+                    pagado = true;
+                }
+                else
+                {
+                    monto = _carro.CalcularCoste();
+                    pagado = false;
+                }
                 //Se crea una orden con los datos del carro de compras
                 Orden orden = new Orden()
                 {
                     IdUsuario = nombreUsr,
-                    Monto = (User.IsInRole("administrador"))? 0:_carro.CalcularCoste()
+                    Monto = monto,
+                    Pagado = pagado,
+                    Entregado = false,
+                    Preparado = false,
+                    ProductoPersonalizado = _carro.ProductoPersonalizado
                 };
                 CarroViewModel carroViewModel = new CarroViewModel()
                 {
                     orden = orden,
                     productoPersonalizado = _carro.ProductoPersonalizado
+
                 };
 
                 return View(carroViewModel);
@@ -202,33 +219,55 @@ namespace ABMODELE.Controllers
         /// </summary>
         /// <param name="orden">La orden a agregar a la base de datos.</param>
         /// <returns>La vista de la orden a crear.</returns>
-        [Authorize(Roles = "administrador")]
+        [Authorize(Roles = "administrador, cliente")]
         [HttpPost]
+        [ActionName("PagarCarro")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "NumOrden,IdUsuario,FechaOrden,FechaEntrega,Monto,Pagado,MetodoPago,Preparado,Entregado")] Orden orden)
+        public ActionResult Create([Bind(Include = "NumOrden,IdUsuario,FechaOrden,FechaEntrega,Monto,MetodoPago,Comentario")] Orden orden)
         {
+            CarroDeCompra carro = obtenerCarro();
+            
             // Insertamos la orden a la db 
             if (ModelState.IsValid)
             {
                 db.Orden.Add(orden);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
+                AgregarProductosPersonalizados(orden, carro.ProductoPersonalizado);
+                //return RedirectToAction("JsonModelState", ModelState);
             }
             // Agregamos los productos a la DB
 
-            AgregarProductosPersonalizados(orden);
+            //
+            ;
 
             
-
-            return View(orden);
+            return RedirectToAction("Index");
         }
 
-        private void AgregarProductosPersonalizados(Orden orden)
+        private void NewMethod(Orden orden)
+        {
+            db.Orden.Add(orden);
+        }
+
+        public JsonResult JsonModelState(ModelStateDictionary model)
+        {
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        private void AgregarProductosPersonalizados(Orden orden, List<ProductoPersonalizado> productos)
         {
 
-            var listaProductos = orden.ProductoPersonalizado;
+            var listaProductos = productos;
+            if (listaProductos == null)
+                return;
             foreach(var item in listaProductos)
-            {
-                db.ProductoPersonalizado.Add(item);
+            {                
+                db.ProductoPersonalizado.Add(
+                    new ProductoPersonalizado()
+                    {
+                        IdOrden = orden.NumOrden,
+                        IdProducto = item.IdProducto
+                    });
             }
         }
 

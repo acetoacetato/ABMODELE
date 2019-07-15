@@ -17,6 +17,7 @@ namespace ABMODELE.Models
         public DateTime FechaEntrega { get; set; }
         public int Monto { get; set; }
         public bool Pagado { get; set; }
+        public string Comentario { get; set; }
         [ForeignKey("MetodoDePago")]
         public int MetodoPago { get; set; }
         public bool Preparado { get; set; }
