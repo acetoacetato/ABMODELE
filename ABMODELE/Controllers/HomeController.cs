@@ -4,15 +4,27 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ABMODELE.Models;
+using ABMODELE.Models.ViewModel;
 
 namespace ABMODELE.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
-            return View();
+            var produc = db.Producto.Where(prod => prod.Destacado == true).ToList();
+            var cat = db.Categoria.ToList();
+            var home = new HomeViewModel()
+            {
+                categorias = cat,
+                productos = produc
+            };
+            
+            return View(home);
         }
+
+        
 
         public ActionResult About()
         {

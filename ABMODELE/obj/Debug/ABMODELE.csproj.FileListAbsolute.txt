@@ -403,3 +403,4 @@ C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.Come
 C:\Users\Marcelo\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.ComentarioEnProducto.resources
 C:\Users\Marcelo\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.ComentariosOrden.resources
 C:\Users\Marcelo\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.CategoriasProductos.resources
+C:\Users\Marcelo\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.Destacados.resources
