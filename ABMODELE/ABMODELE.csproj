@@ -184,6 +184,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrdensController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -243,9 +244,15 @@
     <Compile Include="Migrations\201907130204444_ComentariosOrden.Designer.cs">
       <DependentUpon>201907130204444_ComentariosOrden.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907151641297_CategoriasProductos.cs" />
+    <Compile Include="Migrations\201907151641297_CategoriasProductos.Designer.cs">
+      <DependentUpon>201907151641297_CategoriasProductos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\CarroDeCompra.cs" />
+    <Compile Include="Models\Categoria.cs" />
+    <Compile Include="Models\CategoriaToProducto.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Ingrediente.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -465,6 +472,9 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Store\Details.cshtml" />
+    <Content Include="Views\Store\Browse.cshtml" />
+    <Content Include="Views\Store\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -526,6 +536,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907130204444_ComentariosOrden.resx">
       <DependentUpon>201907130204444_ComentariosOrden.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907151641297_CategoriasProductos.resx">
+      <DependentUpon>201907151641297_CategoriasProductos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

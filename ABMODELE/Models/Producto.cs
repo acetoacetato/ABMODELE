@@ -24,6 +24,7 @@ namespace ABMODELE.Models
         public int TiempoPreparacion { get; set; }
         public virtual ICollection<ProductoToIngrediente> ProductoToIngredientes { get; set; }
         public virtual ICollection<ProductoPersonalizado> ProductoPersonalizados { get; set; }
+        public virtual ICollection<CategoriaToProducto> CategoriaToProducto { get; set; }
         public virtual TipoProducto TipoProducto { get; set; }
     }
 }

@@ -31,6 +31,9 @@ namespace ABMODELE.Models
         public DbSet<TipoProducto> TipoProducto { get; set; }
         public DbSet<MetodoDePago> MetodoDePago { get; set; }
 
+        public DbSet<Categoria> Categoria { get; set; }
+        public DbSet<CategoriaToProducto> CategoriaToProducto { get; set; }
+
         public DbSet<ProductoToIngrediente> ProductoToIngrediente { get; set; }
         public DbSet<SinIngrediente> SinIngrediente { get; set; }
 
