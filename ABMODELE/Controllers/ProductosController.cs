@@ -217,5 +217,24 @@ namespace ABMODELE.Controllers
             }
             base.Dispose(disposing);
         }
+
+        /// <summary>
+        /// Busca en el nombre de los productos, los términos a buscar.
+        /// </summary>
+        /// <param name="str">los términos a buscar, separados por espacio.</param>
+        /// <returns>Un Json con los productos coincidentes.</returns>
+        [HttpPost]
+        public JsonResult busqueda(string str)
+        {
+            String[] terminos = str.Split(' ');
+            List<Producto> lista = new List<Producto>();
+            foreach(var termino in terminos)
+            {
+                var auxLista = db.Producto.Where(o => o.Nombre.Contains(termino));
+                lista.AddRange(auxLista);
+            }
+
+            return Json(lista, JsonRequestBehavior.AllowGet);
+        }
     }
 }

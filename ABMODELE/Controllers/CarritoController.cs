@@ -11,7 +11,10 @@ namespace ABMODELE.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-
+        /// <summary>
+        /// Obtiene el carro de la sesión. Si no existe, se crea uno.
+        /// </summary>
+        /// <returns>el carro de la sesión</returns>
         private CarroDeCompra obtenerCarro()
         {
             CarroDeCompra carrito = (CarroDeCompra)HttpContext.Session["Carrito"];
@@ -24,6 +27,10 @@ namespace ABMODELE.Controllers
             return carrito;
         }
 
+        /// <summary>
+        /// Muestra los datos del carro.
+        /// </summary>
+        /// <returns>Un Json con los datos del carro.</returns>
         public JsonResult mostrarCarrito()
         {
             CarroDeCompra _carro = obtenerCarro();
@@ -31,6 +38,12 @@ namespace ABMODELE.Controllers
             return carro;
         }
 
+        /// <summary>
+        /// Agrega una cantidad de productos al carro.
+        /// </summary>
+        /// <param name="idProducto">El id del producto a agregar.</param>
+        /// <param name="cantidad">La cantidad de productos a agregar.</param>
+        /// <returns>Un Json con el resultado de la operación.</returns>
         [HttpPost]
         public JsonResult AgregarProducto(int idProducto, int cantidad)
         {
@@ -63,7 +76,11 @@ namespace ABMODELE.Controllers
 
         
         
-
+        /// <summary>
+        /// Elimina un producto del carro.
+        /// </summary>
+        /// <param name="productoPersonalizado">El producto a eliminar</param>
+        /// <returns>Un Json con el resultado de la operación.</returns>
         public JsonResult EliminarProducto (ProductoPersonalizado productoPersonalizado)
         {
             CarroDeCompra _carro = obtenerCarro();
@@ -71,6 +88,10 @@ namespace ABMODELE.Controllers
             return Json("'Sucess'");
         }
 
+        /// <summary>
+        /// Elimina todos los productos del carro.
+        /// </summary>
+        /// <returns>Un Json con el resultado de la operación.</returns>
         public JsonResult VaciarCarrito()
         {
             CarroDeCompra _carro = obtenerCarro();
