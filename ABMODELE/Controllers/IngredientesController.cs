@@ -129,6 +129,13 @@ namespace ABMODELE.Controllers
             return RedirectToAction("Index");
         }
 
+        [ActionName("Informe")]
+        public ActionResult InformeIngredientes()
+        {
+            var lista = db.Ingrediente.OrderBy(o => o.Disponibilidad);
+            return View(lista);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
