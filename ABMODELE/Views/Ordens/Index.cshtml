@@ -42,7 +42,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr id="@item.NumOrden">
         <td>
             @Html.DisplayFor(modelItem => item.NumOrden)
         </td>
@@ -71,11 +71,48 @@
             @Html.DisplayFor(modelItem => item.Entregado)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.NumOrden }) |
-            @Html.ActionLink("Details", "Details", new { id=item.NumOrden }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.NumOrden })
+            @Html.ActionLink("Edit", "Edit", new { id = item.NumOrden }) |
+            @Html.ActionLink("Details", "Details", new { id = item.NumOrden }) |
+            @if (User.IsInRole("cocinero"))
+            {
+                <a href="#" onclick="EntregarOrden(@item.NumOrden)" class="btn btn-default">Entregar Orden</a>
+            }
+
+
+            <!--@Html.ActionLink("Delete", "Delete", new { id=item.NumOrden })-->
         </td>
     </tr>
 }
 
 </table>
+
+
+<script>
+
+    function EntregarOrden(idProducto) {
+        alert(idProducto);
+        $.ajax({
+            type: "POST",
+            url: "/Ordens/EntregarOrden",
+            content: "application/json; charset=utf-8",
+            dataType: "json",
+            data: {
+                'id': idProducto,
+            },
+            success: function (response) {
+                if (response.success) {
+                    alert("Orden Entregada");
+                    document.getElementById(idProducto).hidden = true;
+                }
+                    
+                else
+                    alert("Error: " + response.responseText);
+            },
+            error: function (response) {
+                alert("Errrorrrr: " + response.responseText);
+            }
+
+        });
+    }
+
+</script>

@@ -71,7 +71,7 @@
 
 <script>
     function agregarAlCarrito(idProducto) {
-        alert(document.getElementById("cantidad").value);
+        
         $.ajax({
             type: "POST",
             url: "/Carrito/AgregarProducto",
@@ -93,4 +93,5 @@
 
         });
     }
+
 </script>

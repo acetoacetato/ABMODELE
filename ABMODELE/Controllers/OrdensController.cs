@@ -209,7 +209,7 @@ namespace ABMODELE.Controllers
             orden.Entregado = true;
             db.SaveChanges();
 
-            return Json("'Success':'true'");
+            return Json(new { success = true}, JsonRequestBehavior.AllowGet);
             
         }
 
