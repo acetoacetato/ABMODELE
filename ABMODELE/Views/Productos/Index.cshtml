@@ -23,6 +23,15 @@
         <th>
             @Html.DisplayNameFor(model => model.ConJuna)
         </th>
+
+        @if (User.IsInRole("administrador"))
+        {
+
+        <th>
+            @Html.DisplayNameFor(model => model.Destacado)
+        </th>
+        }
+
         <th>
             @Html.DisplayNameFor(model => model.TiempoPreparacion)
         </th>
@@ -40,6 +49,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.ConJuna)
         </td>
+
+        @if (User.IsInRole("Administrador"))
+        {
+        <td>
+            @Html.DisplayFor(modelItem => item.Destacado)
+        </td>
+        }
+
         <td>
             @Html.DisplayFor(modelItem => item.TiempoPreparacion)
         </td>

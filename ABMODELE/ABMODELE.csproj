@@ -243,9 +243,19 @@
     <Compile Include="Migrations\201907130204444_ComentariosOrden.Designer.cs">
       <DependentUpon>201907130204444_ComentariosOrden.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907151641297_CategoriasProductos.cs" />
+    <Compile Include="Migrations\201907151641297_CategoriasProductos.Designer.cs">
+      <DependentUpon>201907151641297_CategoriasProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907162100050_Destacados.cs" />
+    <Compile Include="Migrations\201907162100050_Destacados.Designer.cs">
+      <DependentUpon>201907162100050_Destacados.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\CarroDeCompra.cs" />
+    <Compile Include="Models\Categoria.cs" />
+    <Compile Include="Models\CategoriaToProducto.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Ingrediente.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -257,6 +267,7 @@
     <Compile Include="Models\SinIngrediente.cs" />
     <Compile Include="Models\TipoProducto.cs" />
     <Compile Include="Models\ViewModel\CarroViewModel.cs" />
+    <Compile Include="Models\ViewModel\HomeViewModel.cs" />
     <Compile Include="Models\ViewModel\ProductoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -465,9 +476,13 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Productos\Browse.cshtml" />
+    <Content Include="Views\Ingredientes\Informe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\img\Categorias\" />
+    <Folder Include="Content\img\Productos\" />
     <Folder Include="Views\Carrito\" />
     <Folder Include="Views\CrearPago\" />
   </ItemGroup>
@@ -526,6 +541,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907130204444_ComentariosOrden.resx">
       <DependentUpon>201907130204444_ComentariosOrden.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907151641297_CategoriasProductos.resx">
+      <DependentUpon>201907151641297_CategoriasProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907162100050_Destacados.resx">
+      <DependentUpon>201907162100050_Destacados.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

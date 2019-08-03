@@ -22,8 +22,12 @@ namespace ABMODELE.Models
         [Range(0, int.MaxValue, ErrorMessage = "Debe ser un tiempo mayor o igual a 0")]
         [Display(Name ="Tiempo de preparacion (En minutos)")]
         public int TiempoPreparacion { get; set; }
+        [Display (Name = "Producto Destacado")]
+        public bool Destacado { get; set; }
+
         public virtual ICollection<ProductoToIngrediente> ProductoToIngredientes { get; set; }
         public virtual ICollection<ProductoPersonalizado> ProductoPersonalizados { get; set; }
+        public virtual ICollection<CategoriaToProducto> CategoriaToProducto { get; set; }
         public virtual TipoProducto TipoProducto { get; set; }
     }
 }

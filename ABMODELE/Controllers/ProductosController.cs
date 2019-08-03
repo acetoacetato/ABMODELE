@@ -57,7 +57,7 @@ namespace ABMODELE.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrador")]
-        public ActionResult Create([Bind(Include = "ProductoId,Nombre,Precio,ConJuna,tiempoPreparacion,Tipo")] Producto producto)
+        public ActionResult Create([Bind(Include = "ProductoId,Nombre,Precio,ConJuna,tiempoPreparacion,Tipo,Destacado")] Producto producto)
         {
             if (ModelState.IsValid)
             {
@@ -165,7 +165,7 @@ namespace ABMODELE.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrador")]
-        public ActionResult Edit([Bind(Include = "ProductoId,Nombre,Precio,ConJuna,tiempoPreparacion,Tipo")] Producto producto)
+        public ActionResult Edit([Bind(Include = "ProductoId,Nombre,Precio,ConJuna,tiempoPreparacion,Tipo,Destacado")] Producto producto)
         {
             if (ModelState.IsValid)
             {
@@ -218,6 +218,30 @@ namespace ABMODELE.Controllers
             base.Dispose(disposing);
         }
 
+
+        public ActionResult Browse(string categorias)
+        {
+            int idCat = db.Categoria
+                            .Where(cat => cat.nombre == categorias)
+                            .Select(cat => cat.id)
+                            .FirstOrDefault();
+
+            var listaProductos = db.Producto
+                                    .Join(db.CategoriaToProducto,
+                                    producto => producto.ProductoId,
+                                    categoriaToProducto => categoriaToProducto.ProductoId,
+                                    (producto, categoriaToProducto) =>
+                                            new { Producto = producto, CategoriaToProducto = categoriaToProducto })
+                                    .Where(join => join.CategoriaToProducto.CategoriaId == idCat)
+                                    .Select(join => join.Producto)
+                                    .ToList();
+
+            return View(listaProductos);
+        }
+
+
+
+
         /// <summary>
         /// Busca en el nombre de los productos, los términos a buscar.
         /// </summary>
@@ -236,5 +260,6 @@ namespace ABMODELE.Controllers
 
             return Json(lista, JsonRequestBehavior.AllowGet);
         }
+
     }
 }

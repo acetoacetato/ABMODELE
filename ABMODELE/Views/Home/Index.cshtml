@@ -1,8 +1,21 @@
-﻿@{
+﻿@model ABMODELE.Models.ViewModel.HomeViewModel
+
+@{
     ViewBag.Title = "CafetApp";
 }
 
-<div class="jumbotron">
-    <h1>ESKEREEEEE</h1>
-    <p>Eskere 123</p>
-</div>
+
+<ul>
+    @foreach (var categoria in Model.categorias)
+    {
+        <li>@Html.ActionLink(categoria.nombre, "Browse","Productos",    new { categorias = categoria.nombre }, "")</li>
+    }
+</ul>
+
+<ul>
+    @foreach ( var producto in Model.productos)
+    {
+        <li>@Html.ActionLink(producto.Nombre + " " + producto.Precio, "Details", "Productos", new { id = producto.ProductoId }, "")</li>
+    }
+
+</ul>

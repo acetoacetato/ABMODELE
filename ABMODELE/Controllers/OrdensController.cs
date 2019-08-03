@@ -209,7 +209,7 @@ namespace ABMODELE.Controllers
             orden.Entregado = true;
             db.SaveChanges();
 
-            return Json("'Success':'true'");
+            return Json(new { success = true}, JsonRequestBehavior.AllowGet);
             
         }
 
@@ -254,6 +254,11 @@ namespace ABMODELE.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Agrega una lista de productos personalizados a una orden y a la base de datos.
+        /// </summary>
+        /// <param name="orden">La orden a agregar.</param>
+        /// <param name="productos">Los productos personalizados a agregar.</param>
         private void AgregarProductosPersonalizados(Orden orden, List<ProductoPersonalizado> productos)
         {
 
@@ -261,14 +266,53 @@ namespace ABMODELE.Controllers
             if (listaProductos == null)
                 return;
             foreach(var item in listaProductos)
-            {                
-                db.ProductoPersonalizado.Add(
+            {
+                AgregarProducto(item, orden);
+
+            }
+        }
+
+        /// <summary>
+        /// Agrega un producto personalizado a la base de datos.
+        /// </summary>
+        /// <param name="productoPersonalizado">Producto personalizado a agregar.</param>
+        /// <param name="orden">Orden a la que pertenece el producto.</param>
+        private void AgregarProducto(ProductoPersonalizado productoPersonalizado, Orden orden)
+        {
+            int idProd = productoPersonalizado.IdProducto;
+            //Agregamos el producto personalizado
+            db.ProductoPersonalizado.Add(
                     new ProductoPersonalizado()
                     {
                         IdOrden = orden.NumOrden,
-                        IdProducto = item.IdProducto
+                        IdProducto = idProd
                     });
+            //Actualizamos las existencias
+            ActualizarExistencias(idProd);
+            db.SaveChanges();
+
+        }
+
+        /// <summary>
+        /// Actualiza las existencias de los ingredientes, 
+        ///   consumiendo las cantidades necesarias para crear un producto.
+        /// </summary>
+        /// <param name="idProducto">Id del producto a crear.</param>
+        private void ActualizarExistencias(int idProducto)
+        {
+            //Obtenemos el producto
+            Producto producto = db.Producto.Find(idProducto);
+
+            //Obtenemos la dupla de id y cantidad de cada ingrediente utilizado
+            var listaIng = producto.ProductoToIngredientes.Select(o=> new { id = o.IngredienteId, cant = o.CantidadProducto});
+
+            //Se actualizan las existencias de cada ingrediente
+            foreach (var item in listaIng)
+            {
+                Ingrediente ing = db.Ingrediente.Find(item.id);
+                ing.Disponibilidad -= item.cant;
             }
+            db.SaveChanges();
         }
 
         /// <summary>
