@@ -1,0 +1,13 @@
+﻿@model ABMODELE.Models.ViewModel.IngredientesDisponiblesViewModel
+
+@{
+    ViewBag.Title = "ComboBoxIngredientes";
+}
+
+<select id="selectIngredientes">
+    @foreach (var item in Model.productoToIngredientes)
+    {
+        <option value="@item.IngredienteId" id="@item.IngredienteId">@item.Ingrediente.Nombre</option>
+    }
+</select>
+

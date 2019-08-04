@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ABMODELE.Models;
+using ABMODELE.Models.ViewModel;
 
 namespace ABMODELE.Controllers
 {
@@ -134,6 +135,37 @@ namespace ABMODELE.Controllers
         {
             var lista = db.Ingrediente.OrderBy(o => o.Disponibilidad);
             return View(lista);
+        }
+
+        /// <summary>
+        /// Retorna los ingredientes disponibles para un producto, omite los que ya existen en este
+        /// </summary>
+        /// <param name="idProd">id del producto.</param>
+        /// <returns></returns>
+        public ActionResult ComboBoxIngredientes(int idProd)
+        {
+            var ingredientes = db.Ingrediente.Where(o => o.EsAuxiliar == false).ToList();
+            var ingredientesEnProd = db.ProductoToIngrediente.Where(o => o.ProductoId == idProd).ToList();
+            var listaARetornar = new List<ProductoToIngrediente>();
+            foreach (var relacion in ingredientesEnProd)
+            {
+                ingredientes.Remove(relacion.Ingrediente);
+            }
+
+            //Se crean los ProductoToIngredientes correspondientes
+            foreach(var item in ingredientes)
+            {
+                var aux = new ProductoToIngrediente()
+                {
+                    Ingrediente = item,
+                    IngredienteId = item.IngredienteId,
+                    ProductoId = idProd
+                };
+
+                listaARetornar.Add(aux);
+            }
+
+            return View(new IngredientesDisponiblesViewModel() { productoToIngredientes = listaARetornar});
         }
 
         protected override void Dispose(bool disposing)

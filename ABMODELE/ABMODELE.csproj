@@ -271,6 +271,7 @@
     <Compile Include="Models\TipoProducto.cs" />
     <Compile Include="Models\ViewModel\CarroViewModel.cs" />
     <Compile Include="Models\ViewModel\HomeViewModel.cs" />
+    <Compile Include="Models\ViewModel\IngredientesDisponiblesViewModel.cs" />
     <Compile Include="Models\ViewModel\ProductoToIngredienteViewModel.cs" />
     <Compile Include="Models\ViewModel\ProductoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -483,6 +484,7 @@
     <Content Include="Views\Ingredientes\Informe.cshtml" />
     <Content Include="Views\Productos\IngredientePartial.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
+    <Content Include="Views\Ingredientes\ComboBoxIngredientes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

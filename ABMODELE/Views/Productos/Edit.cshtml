@@ -2,11 +2,14 @@
 
 @{
     ViewBag.Title = "Edit";
+    
+    //Index para hacer seguimiento de la cantidad de ProdutcoToIngredientes
     int i = 0;
 }
 
 <h2>Edit</h2>
 
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
 
 @using (Html.BeginForm())
 {
@@ -82,7 +85,10 @@
 
 
         </ul>
-
+        <div id="comboBoxIngredientes">
+            <!--Aca va el combobox desde el partial ComboBoxIngredientes-->
+            <label>Seleccione ingrediente a agregar:</label>
+        </div>
         <a id="agregarIngrediente" onclick="agregarIngrediente()">Agregar Ingrediente</a>
 
 
@@ -105,14 +111,29 @@
 <script>
     var index = @i;
     function agregarIngrediente() {
-        $.get('/Productos/IngredienteRow', {i : index, idProd: @Model.ProductoId },  function (template) {
+        var seleccionado = $("#selectIngredientes option:selected").val();
+        alert(seleccionado);
+        $.get('/Productos/IngredienteRow', {i : index, idProd: @Model.ProductoId, idIngrediente: seleccionado },  function (template) {
             $("#Ingredientes").append(template);
         });
+        $("#selectIngredientes option:selected").remove();
         index++;
     }
+    $(document).ready(function () {
+        $.get('/Ingredientes/ComboBoxIngredientes', { idProd: @Model.ProductoId},
+            function (template) {
+                $("#comboBoxIngredientes").append(template);
+            })
+    });
 
-    function eliminar(elemento) {
+    function eliminar(elemento, idOpcion, nameOpcion) {
+
+        //Agregamos dicho ingrediente al comboBox
+        $("#selectIngredientes").append(new Option(nameOpcion, idOpcion));
+
+        //Eliminamos el ingrediente
         document.getElementById("ingrediente" + elemento).remove();
+
         for (i = elemento + 1; i < index; i++) {
             var j = i - 1;
 
@@ -133,5 +154,7 @@
         index--;
 
     }
+
+
 </script>
 
