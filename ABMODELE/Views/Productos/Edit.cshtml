@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Edit";
+    int i = 0;
 }
 
 <h2>Edit</h2>
@@ -10,7 +11,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Producto</h4>
         <hr />
@@ -42,7 +43,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="form-group">
             @Html.LabelFor(model => model.Destacado, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -61,6 +62,30 @@
             </div>
         </div>
 
+        <h2>Ingredientes</h2>
+
+        <ul id="Ingredientes">
+
+
+            @if (Model.ProductoToIngredientes != null)
+            {
+                foreach (var ingrediente in Model.ProductoToIngredientes)
+                {
+                    Html.RenderPartial("IngredientePartial", new ABMODELE.Models.ViewModel.ProductoToIngredienteViewModel() { productoToIngrediente = ingrediente, index = i });
+                    i++;
+                }
+            }
+            else
+            {
+                <li id="nada">Ninguno</li>
+            }
+
+
+        </ul>
+
+        <a id="agregarIngrediente" onclick="agregarIngrediente()">Agregar Ingrediente</a>
+
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
@@ -76,3 +101,37 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script>
+    var index = @i;
+    function agregarIngrediente() {
+        $.get('/Productos/IngredienteRow', {i : index, idProd: @Model.ProductoId },  function (template) {
+            $("#Ingredientes").append(template);
+        });
+        index++;
+    }
+
+    function eliminar(elemento) {
+        document.getElementById("ingrediente" + elemento).remove();
+        for (i = elemento + 1; i < index; i++) {
+            var j = i - 1;
+
+            //Editamos el index del id
+            var ingredienteId = document.getElementById("ProductoToIngredientes_" + i + "__IngredienteId");
+            ingredienteId.setAttribute("name", "ProductoToIngredientes[" + j + "].IngredienteId")
+
+
+            //Editamos el index del ProductoId
+            var productoId = document.getElementById("ProductoToIngredientes_" + i + "__ProductoId");
+            productoId.setAttribute("name", "ProductoToIngredientes[" + j + "].ProductoId")
+            
+            
+            //Editamos el index de la cantidad
+            var ingredienteCant = document.getElementById("ProductoToIngredientes_" + i + "__CantidadProducto");
+            ingredienteCant.setAttribute("name", "ProductoToIngredientes[" + j + "].CantidadProducto")
+        }
+        index--;
+
+    }
+</script>
+
