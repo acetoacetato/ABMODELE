@@ -75,6 +75,14 @@ namespace ABMODELE.Controllers
             return View(producto);
         }
 
+       
+
+
+        public ActionResult IngredienteRow(int i, int idProd)
+        {
+            return PartialView("IngredientePartial", new ProductoToIngredienteViewModel() { index=i, productoToIngrediente = new ProductoToIngrediente() { IngredienteId = 0, CantidadProducto = 0, ProductoId = idProd} });
+        }
+
         /// <summary>
         /// Agrega un ingrediente auxiliar y lo enlaza a un producto que no se prepara
         /// </summary>
@@ -103,11 +111,7 @@ namespace ABMODELE.Controllers
             db.SaveChanges();
         }
 
-        public ActionResult Numerito (int i)
-        {
-            ViewBag.numero = i;
-            return View();
-        }
+
 
         // GET: Productoes/Edit/5
         [Authorize(Roles = "administrador")]
@@ -165,10 +169,56 @@ namespace ABMODELE.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "administrador")]
-        public ActionResult Edit([Bind(Include = "ProductoId,Nombre,Precio,ConJuna,tiempoPreparacion,Tipo,Destacado")] Producto producto)
+        public ActionResult Edit([Bind(Include = "ProductoId,Nombre,Precio,ConJuna,tiempoPreparacion,Tipo,Destacado,ProductoToIngredientes")] Producto producto)
         {
             if (ModelState.IsValid)
             {
+                //Ingredientes de la base de datos
+                var listaAux = db.ProductoToIngrediente.Where(o => o.ProductoId == producto.ProductoId);
+
+                var lista = (listaAux == null) ? new List<ProductoToIngrediente>(): listaAux.ToList();
+                //Ingredientes del producto modificado
+                var lista2 = (producto.ProductoToIngredientes == null)? new List<ProductoToIngrediente>():producto.ProductoToIngredientes.ToList();
+
+                //Marca las cosas como agregadas
+                foreach (var relacion in lista2)
+                {
+                    var itemAgregado = lista.Where(o => o.IngredienteId == relacion.IngredienteId);
+
+                    //Si es un producto nuevo, se le marca como agregado
+                    if (itemAgregado == null || itemAgregado.Count() == 0)
+                    {
+                        //Agregar relacion a la base de datos
+                        //db.ProductoToIngrediente.Add(relacion);
+                        db.Entry(relacion).State = EntityState.Added;
+                    }
+                    //Sino, se le quita de la lista para que no explote
+                    else
+                    {
+                        producto.ProductoToIngredientes.Remove(relacion);
+                    }
+                }
+
+                foreach(var relacion in lista)
+                {
+                    var itemAgregado = lista2.Where(o => o.IngredienteId == relacion.IngredienteId);
+
+                    //Si es un producto nuevo, se le marca como agregado
+                    if (itemAgregado == null || itemAgregado.Count() == 0)
+                    {
+                        //Agregar relacion a la base de datos
+                        //db.ProductoToIngrediente.Add(relacion);
+                        db.Entry(relacion).State = EntityState.Deleted;
+                    }
+                    //Sino, se le quita de la lista para que no explote
+                    else
+                    {
+                        producto.ProductoToIngredientes.Remove(relacion);
+                    }
+                }
+
+                //db.SaveChanges();
+                //ModelState.Clear();
                 db.Entry(producto).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

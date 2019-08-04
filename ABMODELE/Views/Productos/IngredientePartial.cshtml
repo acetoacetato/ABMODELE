@@ -1,0 +1,15 @@
+﻿@model ABMODELE.Models.ViewModel.ProductoToIngredienteViewModel
+@using HtmlHelpers.BeginCollectionItem
+
+<li style="padding-bottom:15px" id="@("ingrediente" + Model.index)">
+
+    <label for='@("ProductoToIngredientes_" + Model.index + "__IngredienteId")'>Id</label>
+    <input id='@("ProductoToIngredientes_" + Model.index + "__IngredienteId")' class="IngredienteId" name="ProductoToIngredientes[@Model.index].IngredienteId" value="@Model.productoToIngrediente.IngredienteId" type="text"><label for='@("ProductoToIngredientes_" + Model.index + "__IngredienteId")'>Id</label>
+
+    <label for='@("ProductoToIngredientes_" + Model.index + "__ProductoId")'>Id</label>
+    <input id='@("ProductoToIngredientes_" + Model.index + "__ProductoId")' class="ProductoId" name="ProductoToIngredientes[@Model.index].ProductoId" value="@Model.productoToIngrediente.ProductoId" type="text"><label for='@("ProductoToIngredientes_" + Model.index + "__ProductoId")'>Id</label>
+
+    <label for='@("ProductoToIngredientes_" + Model.index + "__CantidadProducto")'>cant</label>
+    <input id='@("ProductoToIngredientes_" + Model.index + "__CantidadProducto")' class="CantidadProducto" name="ProductoToIngredientes[@Model.index].CantidadProducto" value="@Model.productoToIngrediente.CantidadProducto" type="text">
+    <a href="#" onclick="eliminar(@Model.index)">Delete</a>
+</li>
