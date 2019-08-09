@@ -272,6 +272,7 @@
     <Compile Include="Models\ViewModel\CarroViewModel.cs" />
     <Compile Include="Models\ViewModel\HomeViewModel.cs" />
     <Compile Include="Models\ViewModel\IngredientesDisponiblesViewModel.cs" />
+    <Compile Include="Models\ViewModel\ProductoPersonalizadoPartialViewModel.cs" />
     <Compile Include="Models\ViewModel\ProductoToIngredienteViewModel.cs" />
     <Compile Include="Models\ViewModel\ProductoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -286,6 +287,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\categorias.css" />
+    <Content Include="Content\img\Productos\Pera.jpg" />
+    <Content Include="Content\img\Categorias\pug.jpg" />
+    <Content Include="Content\img\Categorias\Snacks.jpg" />
+    <Content Include="Content\img\Productos\pug.jpg" />
+    <Content Include="Content\Productos.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -485,11 +492,12 @@
     <Content Include="Views\Productos\IngredientePartial.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
     <Content Include="Views\Ingredientes\ComboBoxIngredientes.cshtml" />
+    <Content Include="Views\Ordens\ProdPerPartialView.cshtml" />
+    <Content Include="Views\Home\CategoriaPartial.cshtml" />
+    <Content Include="Views\Shared\ProductoPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\img\Categorias\" />
-    <Folder Include="Content\img\Productos\" />
     <Folder Include="Views\Carrito\" />
     <Folder Include="Views\CrearPago\" />
     <Folder Include="Views\Productos\Partialview\" />

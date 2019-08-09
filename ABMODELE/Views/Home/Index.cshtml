@@ -4,18 +4,41 @@
     ViewBag.Title = "CafetApp";
 }
 
+<hr />
+<!--Se inicia el grid y se tira un partialView por cada categoria-->
+<link rel="stylesheet" type="text/css" href="~/Content/categorias.css">
+<link rel="stylesheet" type="text/css" href="~/Content/Productos.css">
 
-<ul>
-    @foreach (var categoria in Model.categorias)
-    {
-        <li>@Html.ActionLink(categoria.nombre, "Browse","Productos",    new { categorias = categoria.nombre }, "")</li>
-    }
-</ul>
 
-<ul>
-    @foreach ( var producto in Model.productos)
-    {
-        <li>@Html.ActionLink(producto.Nombre + " " + producto.Precio, "Details", "Productos", new { id = producto.ProductoId }, "")</li>
-    }
+<div class="child-page-listing">
 
-</ul>
+    <h2>Categorias</h2>
+
+    <div class="grid-container">
+
+            @foreach (var categoria in Model.categorias)
+            {
+                Html.RenderPartial("CategoriaPartial", categoria);
+            }
+
+
+
+
+    </div>
+</div>
+
+<div class="container">
+    <h3 class="h3">Productos Destacados </h3>
+    <div class="row">
+
+        <!--Agregamos los partial de productos -->
+        @foreach (var producto in Model.productos)
+        {
+            Html.RenderPartial("ProductoPartial", producto);
+        }
+
+
+    </div>
+</div>
+
+

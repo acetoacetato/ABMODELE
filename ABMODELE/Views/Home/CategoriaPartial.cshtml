@@ -1,0 +1,29 @@
+﻿@model ABMODELE.Models.Categoria
+
+@{
+    var imagen = Model.nombre.Replace(' ', '_').Replace('/', '_');
+    var ruta = "~/Content/img/Categorias/" + imagen + ".jpg";
+    var rutaAbsoluta = Server.MapPath(ruta);
+    if (!File.Exists(rutaAbsoluta))
+    {
+        imagen = "pug";
+    }
+
+
+}
+
+<article class="location-listing">
+
+    <a class="location-title" href="/Productos/Browse?categorias=@Model.nombre">
+        @Model.nombre
+    </a>
+
+    <div class="location-image">
+        <a href="#">
+            <img width="20" height="20" src="~/Content/img/Categorias/@(imagen + ".jpg")" alt="@Model.nombre">
+        </a>
+
+    </div>
+
+</article>
+

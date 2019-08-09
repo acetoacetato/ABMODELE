@@ -1,0 +1,31 @@
+﻿@model ABMODELE.Models.Producto
+
+@{
+    var nombre = Model.Nombre.Replace(' ', '_');
+    var ruta = "~/Content/img/Productos/" + nombre + ".jpg";
+    var rutaAbsoluta = Server.MapPath(ruta);
+    if (!File.Exists(rutaAbsoluta))
+    {
+        nombre = "pug";
+    }
+    ruta = "/Content/img/Productos/" + nombre + ".jpg";
+
+    var link = "/Productos/Details/" + Model.ProductoId;
+}
+
+<div class="col-md-3 col-sm-6">
+    <div class="product-grid9">
+        <div class="product-image9">
+            <a href="@link">
+                <img class="pic-1" src="@ruta">
+                <img class="pic-2" src="@ruta">
+            </a>
+            <a href="@link" class="fa fa-search product-full-view"></a>
+        </div>
+        <div class="product-content">
+            <h3 class="title"><a href="@link">@Model.Nombre</a></h3>
+            <div class="price"> $@Model.Precio</div>
+            <a class="add-to-cart" href="@link">Detalles</a>
+        </div>
+    </div>
+</div> 
