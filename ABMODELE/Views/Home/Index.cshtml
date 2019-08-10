@@ -16,16 +16,23 @@
 
     <div class="grid-container">
 
-            @foreach (var categoria in Model.categorias)
-            {
-                Html.RenderPartial("CategoriaPartial", categoria);
-            }
+        @foreach (var categoria in Model.categorias)
+        {
+            Html.RenderPartial("CategoriaPartial", categoria);
+        }
 
 
 
 
     </div>
 </div>
+
+@if (User.IsInRole("Administrador") || User.IsInRole("Cocinero"))
+{
+    <li>@Html.ActionLink("Todos los Productos", "Index", "Productos")</li>
+
+}
+
 
 <div class="container">
     <h3 class="h3">Productos Destacados </h3>

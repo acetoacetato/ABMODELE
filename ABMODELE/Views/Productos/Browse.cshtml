@@ -6,9 +6,13 @@
 
 <h2>Browse</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (User.IsInRole("cocinero") || User.IsInRole("administrador"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create");
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -32,7 +36,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.TipoProducto.Nombre)
@@ -52,12 +57,21 @@
         <td>
             @Html.DisplayFor(modelItem => item.Destacado)
         </td>
+
+        @if (User.IsInRole("cocinero") || User.IsInRole("administrador"))
+        {
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductoId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductoId })
+            </td>
+        }
+
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProductoId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProductoId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProductoId })
+
+            @Html.ActionLink("Details", "Details", new { id = item.ProductoId }) 
+
         </td>
     </tr>
-}
+    }
 
 </table>

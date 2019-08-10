@@ -1,92 +1,109 @@
 ﻿@model ABMODELE.Models.ViewModel.CarroViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Carro";
 
 }
 
-<h2>Create</h2>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+<script src="~/Content/jquery.datetimepicker.full.min.js"></script>
+<link rel="stylesheet" type="text/css" href="~/Content/jquery.datetimepicker.min.css"/ >
+<h2>Tu Carrito</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>Orden</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.orden.IdUsuario, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.orden.IdUsuario, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.orden.IdUsuario, "", new { @class = "text-danger" })
-        </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.orden.FechaOrden, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.orden.FechaOrden, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.orden.FechaOrden, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.orden.FechaEntrega, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.orden.FechaEntrega, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.orden.FechaEntrega, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.orden.Monto, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.orden.Monto, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.orden.Monto, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.orden.Comentario, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.orden.Comentario, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.orden.Monto, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <h4>Productos</h4>
-
-
-   @foreach (var item in Model.productoPersonalizado)
-    {
-        <div><b>Producto: </b> @item.Producto.Nombre</div>
+    <div class="form-horizontal">
+        <h4>Orden</h4>
         <hr />
-    }
-
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.orden.MetodoPago, htmlAttributes: new { @class = "control-label col-md-2" });
-        <div class="col-md-10">
-            <div class="dropdown">
-                @Html.DropDownListFor(model => model.orden.MetodoPago, Model.MetodosDePago);
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.orden.IdUsuario, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.orden.IdUsuario, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.orden.IdUsuario, "", new { @class = "text-danger" })
             </div>
         </div>
 
-    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.orden.FechaOrden, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="datetimepicker1" class="form-control text-box single-line input-validation-error" data-val="true" 
+                       data-val-date="El campo FechaOrden debe ser una fecha." data-val-required="El campo FechaOrden es obligatorio." 
+                       id="orden_FechaOrden" name="orden.FechaOrden" type="datetime" value="01-01-0001 0:00:00" aria-describedby="orden_FechaOrden-error" 
+                       aria-invalid="true">
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.orden.FechaEntrega, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="datetimepicker2" class="form-control text-box single-line input-validation-error" data-val="true" data-val-date="El campo FechaEntrega debe ser una fecha." 
+                       data-val-required="El campo FechaEntrega es obligatorio." id="orden_FechaEntrega" name="orden.FechaEntrega" type="datetime" 
+                       value="01-01-0001 0:00:00" aria-describedby="orden_FechaEntrega-error" aria-invalid="true">
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.orden.Monto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.orden.Monto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.orden.Monto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.orden.Comentario, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.orden.Comentario, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.orden.Monto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <h4>Productos</h4>
+
+
+        @foreach (var item in Model.productoPersonalizado)
+        {
+            <div><b>Producto: </b> @item.Producto.Nombre</div>
+            <hr />
+        }
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.orden.MetodoPago, htmlAttributes: new { @class = "control-label col-md-2" });
+            <div class="col-md-10">
+                <div class="dropdown">
+                    @Html.DropDownListFor(model => model.orden.MetodoPago, Model.MetodosDePago);
+                </div>
+            </div>
+
+        </div>
 
 
 
 
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
         </div>
     </div>
-</div>
 }
+
+<link href="//cdn.syncfusion.com/ej2/fabric.css" rel="stylesheet" />
+<script type="text/javascript">
+    if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
+        document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.1/bluebird.min.js"><\/script>');
+    }
+</script>
+
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -95,3 +112,11 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
+<script>
+
+    jQuery.datetimepicker.setLocale('en');
+    jQuery('#datetimepicker1').datetimepicker();
+    jQuery('#datetimepicker2').datetimepicker();
+</script>

@@ -407,3 +407,4 @@ C:\Users\Marcelo\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.Destacados.reso
 C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.CategoriasProductos.resources
 C:\Users\alenf\source\repos\ABMODELE\ABMODELE\obj\Debug\ABMODELE.Migrations.Destacados.resources
 C:\Users\alenf\source\repos\ABMODELE\ABMODELE\bin\BeginCollectionItem.dll
+C:\Users\Marcelo\ABMODELE\ABMODELE\bin\BeginCollectionItem.dll

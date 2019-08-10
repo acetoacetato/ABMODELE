@@ -58,8 +58,7 @@ namespace ABMODELE.Controllers
                 //Las órdenes que son para hoy y que no están entregadas, ordenadas por fecha
                 ordenes = await db.Orden // La tabla Orden de la base de datos
                                     .Where(o => o.Entregado == false) // ordenes que no estén entregadas
-                                    .Where(o => DbFunctions.DiffDays(o.FechaEntrega, hoy) == 0) // Ordenes que tengan como fecha de entrega el día de hoy
-                                    .Where(o => o.Pagado == true) // Ordenes que estén pagadas
+                                
                                     .OrderBy(o => o.FechaEntrega) // Ordenar las ordenes seleccionadas por la fecha de entrega
                                                                   //  (La fecha de entrega incluye hora)
                                     .ToListAsync(); //Se transforma la consulta a una lista
@@ -168,7 +167,7 @@ namespace ABMODELE.Controllers
                 else
                 {
                     monto = _carro.CalcularCoste();
-                    pagado = false;
+                    pagado = true;
                 }
                 //Se crea una orden con los datos del carro de compras
                 Orden orden = new Orden()
