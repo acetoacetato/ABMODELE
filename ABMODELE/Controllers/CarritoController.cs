@@ -92,11 +92,11 @@ namespace ABMODELE.Controllers
         /// Elimina todos los productos del carro.
         /// </summary>
         /// <returns>Un Json con el resultado de la operación.</returns>
-        public JsonResult VaciarCarrito()
+        public ActionResult VaciarCarrito()
         {
             CarroDeCompra _carro = obtenerCarro();
             _carro.VaciarCarro();
-            return Json("'Sucess'");
+            return RedirectToAction("PagarCarro", "Ordens");
         }
 
 

@@ -161,7 +161,7 @@ namespace ABMODELE.Controllers
                 bool pagado;
                 if (User.IsInRole("administrador"))
                 {
-                    monto = 0;
+                    monto = 0; ;
                     pagado = true;
                 }
                 else
@@ -229,9 +229,11 @@ namespace ABMODELE.Controllers
             // Insertamos la orden a la db 
             if (ModelState.IsValid)
             {
+                
                 db.Orden.Add(orden);
                 db.SaveChanges();
                 AgregarProductosPersonalizados(orden, carro.ProductoPersonalizado);
+                carro.VaciarCarro();
                 //return RedirectToAction("JsonModelState", ModelState);
             }
             // Agregamos los productos a la DB

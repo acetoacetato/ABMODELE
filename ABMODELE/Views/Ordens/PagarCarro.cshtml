@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="~/Content/jquery.datetimepicker.min.css"/ >
 <h2>Tu Carrito</h2>
 
+<a href="/Carrito/VaciarCarrito" class="btn btn-default">Vaciar Carro</a>
 
 @using (Html.BeginForm())
 {
@@ -33,7 +34,7 @@
             <div class="col-md-10">
                 <input id="datetimepicker1" class="form-control text-box single-line input-validation-error" data-val="true" 
                        data-val-date="El campo FechaOrden debe ser una fecha." data-val-required="El campo FechaOrden es obligatorio." 
-                       id="orden_FechaOrden" name="orden.FechaOrden" type="datetime" value="01-01-0001 0:00:00" aria-describedby="orden_FechaOrden-error" 
+                        name="orden.FechaOrden" type="datetime" value="01-01-0001 0:00:00" aria-describedby="orden_FechaOrden-error" 
                        aria-invalid="true">
                 
             </div>
@@ -115,8 +116,13 @@
 
 
 <script>
-
-    jQuery.datetimepicker.setLocale('en');
-    jQuery('#datetimepicker1').datetimepicker();
-    jQuery('#datetimepicker2').datetimepicker();
+    var data = {
+        startDate: '+1971/05/01',//hoy
+        minDate: '-1970/01/01',//yesterday is minimum date(for today use 0 or -1970/01/01)
+        maxDate: '+1970/01/11',//11 dias en el futuro
+        disabledWeekDays: [6, 7]
+    };
+    jQuery.datetimepicker.setLocale('es');
+    jQuery('#datetimepicker1').datetimepicker(data);
+    jQuery('#datetimepicker2').datetimepicker(data);
 </script>

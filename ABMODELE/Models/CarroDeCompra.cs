@@ -33,10 +33,8 @@ namespace ABMODELE.Models
         {
             if (ProductoPersonalizado == null)
                 return;
-            foreach (var item in ProductoPersonalizado)
-            {
-                ProductoPersonalizado.Remove(item);
-            }
+            ProductoPersonalizado.Clear();
+
         }
 
         public int CalcularCoste()
