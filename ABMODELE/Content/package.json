@@ -31,6 +31,6 @@
     "@syncfusion/ej2-notifications": "17.2.40",
     "@syncfusion/ej2-richtexteditor": "17.2.39",
     "@types/marked": "0.3.0",
-    "marked": "0.3.19"
+    "marked": "4.0.10"
   }
 }
